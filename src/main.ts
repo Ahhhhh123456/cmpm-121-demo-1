@@ -4,37 +4,33 @@ const app: HTMLDivElement = document.querySelector("#app")!;
 
 const gameName = "Jason's Game :)";
 
-//New button element
+// Initialize the counter and growth rate
+let counter = 0;
+let growthRate = 0; // Start with no automatic growth
+
+// Create the main button element
 const button = document.createElement("button");
-
-//Button text
 button.textContent = "Click 💀";
-
-// BUtton styles
 button.style.backgroundColor = "blue";
 button.style.color = "white";
 button.style.padding = "10px 20px";
-
-// Adds the button to the website
 document.body.appendChild(button);
-
-// Initialize a counter
-let counter = 0;
 
 // Create a new div element to display the counter
 const counterDiv = document.createElement("div");
-
-// Set the initial content of the div
 counterDiv.textContent = `${counter} skulls 💀`;
-
-// Append the div to the app (or any other container like the body)
 app.appendChild(counterDiv);
 
-// Function to update the counter and div content
-function updateCounter() {
-  counter += 1;
+// Create a purchasable upgrade button
+const upgradeButton = document.createElement("button");
+upgradeButton.textContent = "Buy Upgrade (10 skulls)";
+upgradeButton.style.padding = "10px 20px";
+upgradeButton.disabled = true; // Disable initially
+document.body.appendChild(upgradeButton);
 
-  const roundedCounter = Math.floor(counter); // Round down to the nearest whole number
+// Function to update the counter display
+function updateCounter() {
+  const roundedCounter = Math.floor(counter); // Round to nearest integer
   if (roundedCounter === 1) {
     counterDiv.textContent = `${roundedCounter} skull 💀`;
   } else {
@@ -42,39 +38,53 @@ function updateCounter() {
   }
 }
 
-// Animation-related variables
-let lastTimestamp = 0; // Tracks the last frame's timestamp
-const passiveIncreaseRate = 1 / 1000; // The rate of increase per millisecond (1 unit per second)
-
-// Function to handle the animation frame
+// Function to handle counter growth based on growthRate
+let lastTimestamp = 0;
 function animate(time: number) {
-  // Calculate the time passed since the last frame
   if (lastTimestamp !== 0) {
-    const timeDiff = time - lastTimestamp; // Time difference in milliseconds
-    const increaseAmount = timeDiff * passiveIncreaseRate; // Increase counter based on time passed
-
-    counter += increaseAmount; // Increment counter
-    updateCounter(); // Update the displayed counter
+    const timeDiff = time - lastTimestamp;
+    const increaseAmount = (timeDiff / 1000) * growthRate; // Counter increases based on growthRate
+    counter += increaseAmount;
+    updateCounter();
+    checkUpgradeAvailability(); // Check if the upgrade can be purchased
   }
-
   lastTimestamp = time;
-  requestAnimationFrame(animate); // Continue the animation
+  requestAnimationFrame(animate);
 }
 
-// Start the passive counter when the button is clicked
+// Start animation loop
+requestAnimationFrame(animate);
+
+// Event listener for the main click button (adds 1 skull)
 button.addEventListener("click", () => {
-  // Adds 1 skull when the button is clicked
   counter += 1;
   updateCounter();
+  checkUpgradeAvailability(); // Check if the upgrade button should be enabled
+});
 
-  // Start the requestAnimationFrame loop
-  if (lastTimestamp === 0) {
-    requestAnimationFrame(animate);
+// Function to check if the player can afford the upgrade
+function checkUpgradeAvailability() {
+  if (counter >= 10) {
+    upgradeButton.disabled = false; // Enable the button if player has 10 or more skulls
+  } else {
+    upgradeButton.disabled = true; // Disable the button if they have less than 10
+  }
+}
+
+// Event listener for the upgrade button
+upgradeButton.addEventListener("click", () => {
+  if (counter >= 10) {
+    counter -= 10; // Deduct 10 skulls from the counter
+    growthRate += 1; // Increase the growth rate by 1 unit per second
+    updateCounter();
+    checkUpgradeAvailability(); // Recheck if the upgrade can be purchased again
   }
 });
 
+// Set the document title
 document.title = gameName;
 
+// Create and append the game name header
 const header = document.createElement("h1");
 header.innerHTML = gameName;
 app.append(header);
