@@ -32,33 +32,46 @@ app.appendChild(counterDiv);
 
 // Function to update the counter and div content
 function updateCounter() {
-  counter += 1;
-  if (counter == 1) {
-    counterDiv.textContent = `${counter} skull 💀`;
-  } else {
-    counterDiv.textContent = `${counter} skulls 💀`;
-  }
+    
+    counter += 1;
+    
+    const roundedCounter = Math.floor(counter); // Round down to the nearest whole number
+    if (roundedCounter === 1) {
+      counterDiv.textContent = `${roundedCounter} skull 💀`;
+    } else {
+      counterDiv.textContent = `${roundedCounter} skulls 💀`;
+    }
 }
 
-// Add a click event listener to the button
+// Animation-related variables
+let lastTimestamp = 0; // Tracks the last frame's timestamp
+const passiveIncreaseRate = 1 / 1000; // The rate of increase per millisecond (1 unit per second)
+
+// Function to handle the animation frame
+function animate(time: number) {
+  // Calculate the time passed since the last frame
+  if (lastTimestamp !== 0) {
+    const timeDiff = time - lastTimestamp; // Time difference in milliseconds
+    const increaseAmount = timeDiff * passiveIncreaseRate; // Increase counter based on time passed
+
+    counter += increaseAmount; // Increment counter
+    updateCounter(); // Update the displayed counter
+  }
+
+  lastTimestamp = time;
+  requestAnimationFrame(animate); // Continue the animation
+}
+
+// Start the passive counter when the button is clicked
 button.addEventListener("click", () => {
   // Adds 1 skull when the button is clicked
+  counter += 1;
   updateCounter();
 
-  // Passive skull generator the button is clicked
-  const passiveCounter = setInterval(() => {
-    counter += 1;
-    if (counter == 1) {
-      counterDiv.textContent = `${counter} skull 💀`;
-    } else {
-      counterDiv.textContent = `${counter} skulls 💀`;
-    }
-  }, 1000);
-
-  // Stops the passive counter after 5 seconds of not clicking
-  setTimeout(() => {
-    clearInterval(passiveCounter);
-  }, 5000);
+  // Start the requestAnimationFrame loop
+  if (lastTimestamp === 0) {
+    requestAnimationFrame(animate);
+  }
 });
 
 document.title = gameName;
