@@ -40,20 +40,25 @@ function updateCounter() {
   }
 }
 
-// Passive skull generator
-const passiveCounter = setInterval(() => {
-    counter += 1;
-    if (counter == 1) {
-        counterDiv.textContent = `${counter} skull 💀`;
-      } else {
-        counterDiv.textContent = `${counter} skulls 💀`;
-      }
-}, 1000);
-
-
 // Add a click event listener to the button
 button.addEventListener("click", () => {
+  // Adds 1 skull when the button is clicked
   updateCounter();
+
+  // Passive skull generator the button is clicked
+  const passiveCounter = setInterval(() => {
+    counter += 1;
+    if (counter == 1) {
+      counterDiv.textContent = `${counter} skull 💀`;
+    } else {
+      counterDiv.textContent = `${counter} skulls 💀`;
+    }
+  }, 1000);
+
+  // Stops the passive counter after 5 seconds of not clicking
+  setTimeout(() => {
+    clearInterval(passiveCounter);
+  }, 5000);
 });
 
 document.title = gameName;
