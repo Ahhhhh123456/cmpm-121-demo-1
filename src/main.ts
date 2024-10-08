@@ -32,15 +32,14 @@ app.appendChild(counterDiv);
 
 // Function to update the counter and div content
 function updateCounter() {
-    
-    counter += 1;
-    
-    const roundedCounter = Math.floor(counter); // Round down to the nearest whole number
-    if (roundedCounter === 1) {
-      counterDiv.textContent = `${roundedCounter} skull 💀`;
-    } else {
-      counterDiv.textContent = `${roundedCounter} skulls 💀`;
-    }
+  counter += 1;
+
+  const roundedCounter = Math.floor(counter); // Round down to the nearest whole number
+  if (roundedCounter === 1) {
+    counterDiv.textContent = `${roundedCounter} skull 💀`;
+  } else {
+    counterDiv.textContent = `${roundedCounter} skulls 💀`;
+  }
 }
 
 // Animation-related variables
