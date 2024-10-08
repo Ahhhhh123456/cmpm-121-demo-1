@@ -40,6 +40,17 @@ function updateCounter() {
   }
 }
 
+// Passive skull generator
+const passiveCounter = setInterval(() => {
+    counter += 1;
+    if (counter == 1) {
+        counterDiv.textContent = `${counter} skull 💀`;
+      } else {
+        counterDiv.textContent = `${counter} skulls 💀`;
+      }
+}, 1000);
+
+
 // Add a click event listener to the button
 button.addEventListener("click", () => {
   updateCounter();
