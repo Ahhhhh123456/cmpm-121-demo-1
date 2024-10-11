@@ -32,8 +32,13 @@ body {
 }
 
 h1 {
+  position: absolute; 
+  top: 50px;          
+  left: 50%;          
+  transform: translateX(-50%);
   font-size: 3.2em;
   line-height: 1.1;
+  color: #FFA500;
 }
 
 #app {
@@ -53,7 +58,10 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
-}
+} 
+
+
+
 button:hover {
   border-color: #646cff;
 }
