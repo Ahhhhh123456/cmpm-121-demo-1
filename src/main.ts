@@ -34,11 +34,11 @@ const availableItems: Item[] = [
 ];
 
 // Creating upgrade elements from availableItems
-const upgrades = availableItems.map(item => ({
+const upgrades = availableItems.map((item) => ({
   ...item,
   currentCost: item.cost,
   button: document.createElement("button"),
-  count: 0
+  count: 0,
 }));
 
 // New div to display the count of purchased items
