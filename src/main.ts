@@ -18,39 +18,32 @@ app.appendChild(growthRateDiv);
 const emojiDiv = document.createElement("div");
 emojiDiv.className = "skull-emoji";
 emojiDiv.textContent = "💀";
-document.body.appendChild(emojiDiv);
 app.appendChild(emojiDiv);
 
-// Array for upgrades
-const upgrades = [
-  {
-    name: "Pumpkin 🎃",
-    initialCost: 10,
-    currentCost: 10,
-    rate: 0.1,
-    button: document.createElement("button"),
-    count: 0,
-  },
-  {
-    name: "Ghost 👻",
-    initialCost: 100,
-    currentCost: 100,
-    rate: 2.0,
-    button: document.createElement("button"),
-    count: 0,
-  },
-  {
-    name: "Zombie 🧟‍♂️",
-    initialCost: 1000,
-    currentCost: 1000,
-    rate: 50.0,
-    button: document.createElement("button"),
-    count: 0,
-  },
+// Interface and available items
+interface Item {
+  name: string;
+  cost: number;
+  rate: number;
+}
+
+const availableItems: Item[] = [
+  { name: "Pumpkin 🎃", cost: 10, rate: 0.1 },
+  { name: "Ghost 👻", cost: 100, rate: 2 },
+  { name: "Zombie 🧟‍♂️", cost: 1000, rate: 50 },
 ];
+
+// Creating upgrade elements from availableItems
+const upgrades = availableItems.map(item => ({
+  ...item,
+  currentCost: item.cost,
+  button: document.createElement("button"),
+  count: 0
+}));
 
 // New div to display the count of purchased items
 const upgradeCountDiv = document.createElement("div");
+upgradeCountDiv.className = "upgrade-count";
 updateUpgradeCounts();
 app.appendChild(upgradeCountDiv);
 
@@ -64,15 +57,12 @@ const upgradeContainer = document.createElement("div");
 upgradeContainer.className = "upgrade-container";
 app.appendChild(upgradeContainer);
 
-// Append upgrade buttons to this new container instead of app
+// Append upgrade buttons to this new container
 upgrades.forEach((upgrade) => {
   upgrade.button.textContent = `Buy ${upgrade.name} (${Math.round(upgrade.currentCost)} skulls)`;
   upgrade.button.disabled = true;
   upgradeContainer.appendChild(upgrade.button);
 });
-
-// Append upgrade buttons to the app
-upgrades.forEach((upgrade) => app.appendChild(upgrade.button));
 
 // Function to update the counter display
 function updateCounter() {
@@ -85,14 +75,10 @@ function updateGrowthRateDisplay() {
   growthRateDiv.textContent = `Growth Rate: ${growthRate.toFixed(1)} skull${growthRate === 1 ? "" : "s"}/sec`;
 }
 
-upgradeCountDiv.className = "upgrade-count"; // Add a class to target in CSS
-updateUpgradeCounts();
-app.appendChild(upgradeCountDiv);
-
 // Update the upgrade counts display
 function updateUpgradeCounts() {
   const counts = upgrades
-    .map((upgrade) => ` ${upgrade.name}: ${upgrade.count} `)
+    .map((upgrade) => ` ${upgrade.name}: ${upgrade.count}`)
     .join(" |");
   upgradeCountDiv.textContent = `${counts}`;
 }
