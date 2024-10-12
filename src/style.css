@@ -101,6 +101,61 @@ button {
   margin-left: 10px; /* Aligns consistently with other elements */
 }
 
+.upgrade-container {
+  display: flex;
+  flex-direction: column; /* Stacks the buttons vertically */
+  gap: 10px;              /* Adds space between each button */
+  margin-top: 20px;       /* Optional: Adds space above the button list */
+}
+
+/* Additional styles for buttons, if needed */
+.upgrade-container button {
+  width: 150px; /* Ensures buttons are consistently sized */
+  padding: 10px; /* Adds padding for better appearance */
+  font-size: 1em; /* Adjust the text size within buttons */
+  text-align: center;
+  transform: translateX(500%);
+  background-color: #1a1a1a; /* Example background color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.upgrade-container button:hover {
+  background-color: #000000; /* A hover effect, optional */
+  color: #ffffff;
+}
+
+.button-container {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 15px; /* Optional: Space between buttons */
+}
+
+/* Tooltip text hidden initially */
+.tooltip {
+  visibility: hidden;
+  width: 200px; /* Adjust width as needed */
+  background-color: black; /* Background color for the tooltip */
+  color: #fff;    /* Text color */
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 5%; /* Position above the button */
+  left: 50%;
+  opacity: 0;  /* Start off fully invisible */
+  transition: opacity 0.3s; /* Fade effect */
+}
+
+/* Show tooltip text on hover */
+.button-container:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
 button:hover {
   border-color: #646cff;
 }

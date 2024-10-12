@@ -25,12 +25,15 @@ interface Item {
   name: string;
   cost: number;
   rate: number;
+  description: string;
 }
 
 const availableItems: Item[] = [
-  { name: "Pumpkin 🎃", cost: 10, rate: 0.1 },
-  { name: "Ghost 👻", cost: 100, rate: 2 },
-  { name: "Zombie 🧟‍♂️", cost: 1000, rate: 50 },
+  { name: "Pumpkin 🎃", cost: 10, rate: 0.1, description: " I'm by your door >:D " },
+  { name: "Ghost 👻", cost: 100, rate: 2, description: "Boo! Did I scare you?" },
+  { name: "Zombie 🧟‍♂️", cost: 1000, rate: 50, description: "Brains taste like chicken"},
+  { name: "Blood 🩸", cost: 2000, rate: 100, description: "Yummy, tastes like iron." },
+  { name: "Demon 😈", cost: 4000, rate: 200, description: "MWA HA HA HA!" }
 ];
 
 // Creating upgrade elements from availableItems
@@ -129,6 +132,23 @@ upgrades.forEach((upgrade) => {
     }
   });
 });
+
+upgrades.forEach((upgrade) => {
+    const buttonContainer = document.createElement("div"); // Container for button and tooltip
+    buttonContainer.className = "button-container";
+  
+    const tooltip = document.createElement("span"); // Tooltip element
+    tooltip.className = "tooltip";
+    tooltip.textContent = `${upgrade.description} (Upgrades ${upgrade.rate} skulls/sec)`; // Use description
+  
+    upgrade.button.textContent = `Buy ${upgrade.name} (${Math.round(upgrade.currentCost)} skulls)`;
+    upgrade.button.disabled = true;
+    
+    buttonContainer.appendChild(upgrade.button); // Add button to container
+    buttonContainer.appendChild(tooltip);        // Add tooltip to container
+    upgradeContainer.appendChild(buttonContainer); // Add container to upgradeContainer
+});
+
 
 // Set the document title
 document.title = gameName;
