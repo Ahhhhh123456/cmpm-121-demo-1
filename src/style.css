@@ -62,45 +62,42 @@ button {
 }
 
 .skull-emoji {
-  position: fixed;          /* Fixes the position relative to the viewport */
-  top: 50%;                 /* 50% down from the top */
-  left: 0;                  /* Aligns to the left edge */
+  position: fixed; /* Fixes the position relative to the viewport */
+  top: 50%; /* 50% down from the top */
+  left: 0; /* Aligns to the left edge */
   transform: translateY(-50%); /* Centers vertically */
-  font-size: 25em;            /* Adjust the size of the emoji */
-  padding: 10px;            /* Optional: Adds some spacing around the emoji */
-  border-radius: 5px;       /* Optional: Rounds the background corners */
+  font-size: 25em; /* Adjust the size of the emoji */
+  padding: 10px; /* Optional: Adds some spacing around the emoji */
+  border-radius: 5px; /* Optional: Rounds the background corners */
 }
 
 .growth-rate {
   position: fixed;
   bottom: calc(125px); /* Positions it directly under the skull emoji */
   left: 0;
-  
+
   width: 120 px;
   font-size: 2em;
   padding: 10px;
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-
-
 }
 
 .amount {
   position: fixed;
-  top : calc(125px); /* Positions it directly under the skull emoji */
+  top: calc(125px); /* Positions it directly under the skull emoji */
   left: 0;
   width: 120 px;
   font-size: 2em;
   padding: 10px;
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-
 }
 
 .upgrade-count {
-  font-size: 1.5em;  /* Adjust this value to make the text larger */
+  font-size: 1.5em; /* Adjust this value to make the text larger */
   font-weight: bold; /* Optionally make the text bold for emphasis */
-  margin-top: 10px;  /* Adjusts spacing, if desired */
+  margin-top: 10px; /* Adjusts spacing, if desired */
   margin-left: 10px; /* Aligns consistently with other elements */
 }
 
