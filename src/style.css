@@ -104,8 +104,8 @@ button {
 .upgrade-container {
   display: flex;
   flex-direction: column; /* Stacks the buttons vertically */
-  gap: 10px;              /* Adds space between each button */
-  margin-top: 20px;       /* Optional: Adds space above the button list */
+  gap: 10px; /* Adds space between each button */
+  margin-top: 20px; /* Optional: Adds space above the button list */
 }
 
 /* Additional styles for buttons, if needed */
@@ -138,7 +138,7 @@ button {
   visibility: hidden;
   width: 200px; /* Adjust width as needed */
   background-color: black; /* Background color for the tooltip */
-  color: #fff;    /* Text color */
+  color: #fff; /* Text color */
   text-align: center;
   border-radius: 6px;
   padding: 5px;
@@ -146,7 +146,7 @@ button {
   z-index: 1;
   bottom: 5%; /* Position above the button */
   left: 50%;
-  opacity: 0;  /* Start off fully invisible */
+  opacity: 0; /* Start off fully invisible */
   transition: opacity 0.3s; /* Fade effect */
 }
 
