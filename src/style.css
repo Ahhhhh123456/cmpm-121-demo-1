@@ -6,8 +6,11 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
   font-synthesis: none;
+  background: url("images/636447041654929334-102617-HalloweenMC-003presto.webp") no-repeat center center;
+  background-size: cover; /* Ensures the image covers the entire container */
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -66,14 +69,25 @@ button {
   top: 50%; /* 50% down from the top */
   left: 0; /* Aligns to the left edge */
   transform: translateY(-50%); /* Centers vertically */
-  font-size: 25em; /* Adjust the size of the emoji */
+  font-size: 10em; /* Adjust the size of the emoji */
   padding: 10px; /* Optional: Adds some spacing around the emoji */
   border-radius: 5px; /* Optional: Rounds the background corners */
+  background-color: #1a1a1a;
+}
+
+.skull-emoji:hover {
+  background-color: #000000; /* Changes color on hover */
+
+}
+
+.skull-emoji:active {
+  background-color: #aaa1a152; /* Darker color when clicked */
+
 }
 
 .growth-rate {
   position: fixed;
-  bottom: calc(125px); /* Positions it directly under the skull emoji */
+  bottom: calc(250px); /* Positions it directly under the skull emoji */
   left: 0;
 
   width: 120 px;
@@ -85,7 +99,7 @@ button {
 
 .amount {
   position: fixed;
-  top: calc(125px); /* Positions it directly under the skull emoji */
+  top: calc(250px); /* Positions it directly under the skull emoji */
   left: 0;
   width: 120 px;
   font-size: 2em;

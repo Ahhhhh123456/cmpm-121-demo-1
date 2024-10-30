@@ -169,6 +169,8 @@ upgrades.forEach((upgrade) => {
   upgradeContainer.appendChild(buttonContainer); // Add container to upgradeContainer
 });
 
+
+
 // Set the document title
 document.title = gameName;
 
@@ -176,3 +178,4 @@ document.title = gameName;
 const header = document.createElement("h1");
 header.innerHTML = gameName;
 app.append(header);
+
